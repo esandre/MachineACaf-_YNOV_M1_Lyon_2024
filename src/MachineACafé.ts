@@ -1,12 +1,15 @@
 import {Pièce} from "./Pièce";
-import {HardwareFake} from "../test/utilities/HardwareFake";
 import {HardwareInterface} from "./hardware/hardware.interface";
 
 export class MachineACafé {
+    private readonly _hardware: HardwareInterface;
+
     constructor(hardware: HardwareInterface) {
         hardware.RegisterMoneyInsertedCallback((montant: number) => {
             this.insérer(Pièce.Parse(montant))
         })
+
+        this._hardware = hardware
     }
 
     private static readonly PrixDuCafé = Pièce.CinquanteCentimes;
@@ -18,6 +21,7 @@ export class MachineACafé {
         if(pièce.EstInférieureA(MachineACafé.PrixDuCafé)) return
 
         this.nombreCafésServis ++
+        this._hardware.MakeACoffee()
         this.argentEncaisséEnCentimes += 50
     }
 }

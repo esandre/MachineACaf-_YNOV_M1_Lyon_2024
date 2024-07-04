@@ -24,6 +24,19 @@ export class Pièce {
     }
 
     static Parse(montant: number) {
-        return Pièce.CinquanteCentimes;
+        switch (montant) {
+            case 1:
+                return Pièce.UnCentime
+            case 2:
+                return Pièce.DeuxCentimes
+            case 5:
+                return Pièce.CinqCentimes
+            case 10:
+                return Pièce.DixCentimes
+            case 20:
+                return Pièce.VingtCentimes
+            default:
+                return Pièce.CinquanteCentimes
+        }
     }
 }

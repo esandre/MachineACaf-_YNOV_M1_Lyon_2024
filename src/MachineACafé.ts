@@ -14,7 +14,7 @@ export class MachineACafé {
     nombreCafésServis: number = 0;
     argentEncaisséEnCentimes: number = 0;
 
-    public insérer(pièce: Pièce) {
+    private insérer(pièce: Pièce) {
         if(pièce.EstInférieureA(MachineACafé.PrixDuCafé)) return
 
         this.nombreCafésServis ++

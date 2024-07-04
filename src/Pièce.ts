@@ -7,6 +7,10 @@ export class Pièce {
     static UnCentime: Pièce = new Pièce(1);
     private readonly _montant: number;
 
+    getMontant() : number {
+        return this._montant;
+    }
+
     private constructor(montant: number) {
         this._montant = montant;
     }
@@ -17,5 +21,9 @@ export class Pièce {
 
     public toString(){
         return this._montant.toString() + 'cts';
+    }
+
+    static Parse(montant: number) {
+        return Pièce.CinquanteCentimes;
     }
 }

@@ -1,3 +1,6 @@
+import {MachineACafé} from "../src/MachineACafé";
+import {Pièce} from "../src/Pièce";
+
 describe("MVP", () => {
     test("Cas nominal", () => {
         // ETANT DONNE une machine a café

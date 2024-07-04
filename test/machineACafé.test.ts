@@ -1,6 +1,7 @@
 import {MachineACafé} from "../src/MachineACafé";
 import {Pièce} from "../src/Pièce";
 import {HardwareFake} from "./utilities/HardwareFake";
+import "./utilities/HardwareMatchers"
 
 describe("MVP", () => {
     test("Cas nominal", () => {
@@ -12,7 +13,7 @@ describe("MVP", () => {
         hardware.SimulerInsertionPièce(Pièce.CinquanteCentimes)
 
         // ALORS il a été demandé au hardware de servir un café
-        expect(hardware.CountInvocationsMakeACoffee()).toEqual(1);
+        expect(hardware).unCaféEstServi();
 
         // ET l'argent est encaissé
         expect(machineACafé.argentEncaisséEnCentimes).toEqual(50);
@@ -28,7 +29,7 @@ describe("MVP", () => {
         hardware.SimulerInsertionPièce(Pièce.CinquanteCentimes)
 
         // ALORS il a été demandé au hardware de servir deux cafés
-        expect(hardware.CountInvocationsMakeACoffee()).toEqual(2);
+        expect(hardware).xCafésSontServis(2);
 
         // ET l'argent est encaissé
         expect(machineACafé.argentEncaisséEnCentimes).toEqual(100);
@@ -51,7 +52,7 @@ describe("MVP", () => {
         hardware.SimulerInsertionPièce(pièce)
 
         // ALORS il n'a pas été demandé au hardware de servir un café
-        expect(hardware.CountInvocationsMakeACoffee()).toEqual(0);
+        expect(hardware).aucunCaféNEstServi();
 
         // ET l'argent n'est pas encaissé
         expect(machineACafé.argentEncaisséEnCentimes).toEqual(0);

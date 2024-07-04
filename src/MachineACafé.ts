@@ -5,6 +5,7 @@ export class MachineACafé {
     argentEncaisséEnCentimes: number = 0;
 
     insérer(pièce: Pièce) {
-
+        this.nombreCafésServis ++
+        this.argentEncaisséEnCentimes += 50
     }
 }

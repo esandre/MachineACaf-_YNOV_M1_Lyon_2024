@@ -31,12 +31,20 @@ describe("MVP", () => {
         expect(machineACafé.argentEncaisséEnCentimes).toEqual(100);
     })
 
-    test("Cas pas assez argent", () => {
+    test.each([
+        Pièce.UnCentime,
+        Pièce.DeuxCentimes,
+        Pièce.CinqCentimes,
+        Pièce.DixCentimes,
+        Pièce.VingtCentimes,
+    ])
+    ("Cas pas assez argent : %s", (pièce: Pièce) => {
         // ETANT DONNE une machine a café
+        // ET une pièce d'une valeur inférieure 50cts
         let machineACafé = new MachineACafé()
 
-        // QUAND on insère 20cts
-        machineACafé.insérer(Pièce.VingtCentimes)
+        // QUAND on insère la pièce
+        machineACafé.insérer(pièce)
 
         // ALORS il n'a pas été demandé au hardware de servir un café
         expect(machineACafé.nombreCafésServis).toEqual(0);

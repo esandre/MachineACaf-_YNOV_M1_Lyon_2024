@@ -30,4 +30,20 @@ describe("MVP", () => {
         // ET l'argent est encaissé
         expect(machineACafé.argentEncaisséEnCentimes).toEqual(100);
     })
+
+    test("Cas pas assez argent", () => {
+        // ETANT DONNE une machine a café
+        let machineACafé = new MachineACafé()
+
+        // QUAND on insère 20cts
+        machineACafé.insérer(Pièce.VingtCentimes)
+
+        // ALORS il n'a pas été demandé au hardware de servir un café
+        expect(machineACafé.nombreCafésServis).toEqual(0);
+
+        // ET l'argent n'est pas encaissé
+        expect(machineACafé.argentEncaisséEnCentimes).toEqual(0);
+    })
+
+    // TODO : Plus de 50cts
 })

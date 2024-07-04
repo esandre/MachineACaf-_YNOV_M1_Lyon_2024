@@ -5,6 +5,8 @@ export class MachineACafé {
     argentEncaisséEnCentimes: number = 0;
 
     insérer(pièce: Pièce) {
+        if(pièce == Pièce.VingtCentimes) return
+
         this.nombreCafésServis ++
         this.argentEncaisséEnCentimes += 50
     }

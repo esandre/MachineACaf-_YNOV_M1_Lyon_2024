@@ -14,13 +14,11 @@ export class MachineACafé {
 
     private static readonly PrixDuCafé = Pièce.CinquanteCentimes;
 
-    nombreCafésServis: number = 0;
     argentEncaisséEnCentimes: number = 0;
 
     private insérer(pièce: Pièce) {
         if(pièce.EstInférieureA(MachineACafé.PrixDuCafé)) return
 
-        this.nombreCafésServis ++
         this._hardware.MakeACoffee()
         this.argentEncaisséEnCentimes += 50
     }

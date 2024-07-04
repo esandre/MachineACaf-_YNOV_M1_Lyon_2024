@@ -12,7 +12,7 @@ describe("MVP", () => {
         hardware.SimulerInsertionPièce(Pièce.CinquanteCentimes)
 
         // ALORS il a été demandé au hardware de servir un café
-        expect(machineACafé.nombreCafésServis).toEqual(1);
+        expect(hardware.CountInvocationsMakeACoffee()).toEqual(1);
 
         // ET l'argent est encaissé
         expect(machineACafé.argentEncaisséEnCentimes).toEqual(50);

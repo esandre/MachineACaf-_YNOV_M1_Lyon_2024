@@ -4,21 +4,6 @@ import {HardwareFake} from "./utilities/HardwareFake";
 import "./utilities/HardwareMatchers"
 
 describe("MVP", () => {
-    test("Cas nominal", () => {
-        // ETANT DONNE une machine a café
-        let hardware = new HardwareFake()
-        let machineACafé = new MachineACafé(hardware)
-
-        // QUAND on insère 50cts
-        hardware.SimulerInsertionPièce(Pièce.CinquanteCentimes)
-
-        // ALORS il a été demandé au hardware de servir un café
-        expect(hardware).unCaféEstServi();
-
-        // ET l'argent est encaissé
-        expect(machineACafé.argentEncaisséEnCentimes).toEqual(50);
-    })
-
     test("Cas 2 cafés", () => {
         // ETANT DONNE une machine a café
         let hardware = new HardwareFake()
@@ -58,5 +43,24 @@ describe("MVP", () => {
         expect(machineACafé.argentEncaisséEnCentimes).toEqual(0);
     })
 
-    // TODO : Plus de 50cts
+    test.each([
+        Pièce.CinquanteCentimes,
+        Pièce.UnEuro,
+        Pièce.DeuxEuros,
+    ])
+    ("Cas nominal : %s", (pièce: Pièce) => {
+        // ETANT DONNE une machine a café
+        // ET une pièce d'une valeur supérieure à 50cts
+        let hardware = new HardwareFake()
+        let machineACafé = new MachineACafé(hardware)
+
+        // QUAND on insère la pièce
+        hardware.SimulerInsertionPièce(pièce)
+
+        // ALORS il a été demandé au hardware de servir un café
+        expect(hardware).unCaféEstServi();
+
+        // ET l'argent est encaissé
+        expect(machineACafé.argentEncaisséEnCentimes).toEqual(pièce.getMontant());
+    })
 })

@@ -1,5 +1,7 @@
 export class Pièce {
-    public static CinquanteCentimes: Pièce = new Pièce(50);
+    static DeuxEuros: Pièce = new Pièce(200);
+    static UnEuro: Pièce = new Pièce(100);
+    static CinquanteCentimes: Pièce = new Pièce(50);
     static VingtCentimes: Pièce = new Pièce(20);
     static DixCentimes: Pièce = new Pièce(10);
     static CinqCentimes: Pièce = new Pièce(5);
@@ -35,8 +37,14 @@ export class Pièce {
                 return Pièce.DixCentimes
             case 20:
                 return Pièce.VingtCentimes
-            default:
+            case 50:
                 return Pièce.CinquanteCentimes
+            case 100:
+                return Pièce.UnEuro
+            case 200:
+                return Pièce.DeuxEuros
+            default:
+                throw new Error()
         }
     }
 }

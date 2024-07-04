@@ -20,6 +20,6 @@ export class MachineACafé {
         if(pièce.EstInférieureA(MachineACafé.PrixDuCafé)) return
 
         this._hardware.MakeACoffee()
-        this.argentEncaisséEnCentimes += 50
+        this.argentEncaisséEnCentimes += pièce.getMontant()
     }
 }

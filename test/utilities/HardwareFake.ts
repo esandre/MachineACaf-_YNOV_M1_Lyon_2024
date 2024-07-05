@@ -1,5 +1,6 @@
 import {ButtonCodes, HardwareInterface} from "../../src/hardware/hardware.interface";
 import {Pièce} from "../../src/Pièce";
+import { TypeDeCafé } from "../../src/TypeDeCafé";
 
 export class HardwareFake implements HardwareInterface {
     FlushStoredMoney(): void {
@@ -31,6 +32,7 @@ export class HardwareFake implements HardwareInterface {
     }
 
     private _moneyInsertedCallback: (coinValue: number) => void = () => {};
+    private _typeCoffeeCallback: (type: TypeDeCafé) => void = () => {}
     private _invocationsMakeACoffee: number = 0;
 
     MakeACoffee(): boolean {
@@ -42,8 +44,16 @@ export class HardwareFake implements HardwareInterface {
         this._moneyInsertedCallback = callback;
     }
 
+    RegisterTypeOfCoffeeCallback(callback: (type: TypeDeCafé) => void): void {
+        this._typeCoffeeCallback = callback;
+    }
+
     public SimulerInsertionPièce(pièce: Pièce): void {
         this._moneyInsertedCallback(pièce.getMontant())
+    }
+
+    public SimulerSélectionCafé(type: TypeDeCafé): void {
+        this._typeCoffeeCallback(type)
     }
 
     public CountInvocationsMakeACoffee() {

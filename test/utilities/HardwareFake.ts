@@ -1,7 +1,12 @@
 import {ButtonCodes, HardwareInterface} from "../../src/hardware/hardware.interface";
 import {Pièce} from "../../src/Pièce";
 
-export class HardwareFake implements HardwareInterface {
+export interface HardwareFakeInterface extends HardwareInterface {
+    SimulerInsertionPièce(pièce: Pièce): void;
+    CountInvocationsMakeACoffee(): number;
+}
+
+export class HardwareFake implements HardwareFakeInterface {
     SetLungoWarningLedState(state: boolean): void {
         throw new Error("Method not implemented.");
     }
@@ -49,7 +54,7 @@ export class HardwareFake implements HardwareInterface {
         this._moneyInsertedCallback(pièce.getMontant())
     }
 
-    public CountInvocationsMakeACoffee() {
+    public CountInvocationsMakeACoffee() : number {
         return this._invocationsMakeACoffee;
     }
 }

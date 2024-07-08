@@ -2,6 +2,9 @@ import {ButtonCodes, HardwareInterface} from "../../src/hardware/hardware.interf
 import {Pièce} from "../../src/Pièce";
 
 export class HardwareFake implements HardwareInterface {
+    SetLungoWarningLedState(state: boolean): void {
+        throw new Error("Method not implemented.");
+    }
     FlushStoredMoney(): void {
         throw new Error("Method not implemented.");
     }
